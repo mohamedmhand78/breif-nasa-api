@@ -6,16 +6,20 @@ let obj = {}
 btn.addEventListener("click", function () {
  if (input.value !== "") {
   let apilink = `https://images-api.nasa.gov/search?q=${input.value}`;
+  section.innerHTML=""
 fetch(apilink)
      .then(data => data.json())
      .then(data => obj = {...data})
-     .then(data => obj.collection.items.forEach(element => {
+     .then(data => {
+      
+      obj.collection.items.forEach(element => {
       section.innerHTML += `<div class="box">
       <img src=${element.links[0]?.href} alt="">
       <h1>${element.data[0]?.title}</h1>
       <p>${element.data[0]?.description}</p>
   </div>`;  
-     }))
+     })}
+     )
  } 
 
  else {
